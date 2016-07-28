@@ -1,0 +1,43 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ita.lo | Url Shortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <meta charset="utf-8">
+</head>
+<body class="bg-warning">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    Encurtador de URL
+                </div>
+            </div>            
+        </div>
+    </nav>
+    <div class="jumbotron  bg-warning">
+        <div class="container">
+            <br>
+                <center>
+                    <h3>Informe a URL para encurtar</h3>
+                    <form action="." method="post" class="form-inline">
+                        <p>{{ form.non_field_errors }}</p>
+                        {{ form.url }}
+                        {% csrf_token %}
+                        <input type="submit" value="Encurtar URL" class="btn btn-lg btn-info">
+                        <p>{{ form.url.errors }}</p>
+                    </form>
+                    <br>
+
+                    {% if short_url %}
+                        <div class="well well-sm bg-success">  
+                            <p><a href="#">{{ short_url }}</a></p>
+                        </div>
+                    {% endif %}
+                </center>
+        </div>
+    </div>
+
+</body>
+</html>
